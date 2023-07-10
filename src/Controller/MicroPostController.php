@@ -22,11 +22,18 @@ class MicroPostController extends AbstractController
         $microPost->setTitle('It comes from controller');
         $microPost->setText('Hi!');
         $microPost->setCreated(new DateTime()); */
-        $microPost = $posts->find(3);
-        $posts->remove($microPost, true);
+        /* $microPost = $posts->find(3);
+        $posts->remove($microPost, true); */
         
         return $this->render('micro_post/index.html.twig', [
-            'controller_name' => 'MicroPostController',
+            'posts' => $posts->findAll(),
+        ]);
+    }
+    #[Route('/micro-post/{post}', name: 'app_micro_post_show')]
+    public function showOne(MicroPost $post): Response
+    {
+        return $this->render('micro_post/show.html.twig', [
+            'post' => $post,
         ]);
     }
 }
