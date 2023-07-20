@@ -35,7 +35,7 @@ class MicroPostController extends AbstractController
         $form = $this->createFormBuilder($microPost)
          ->add('title')
          ->add('text')
-         ->add('submit', SubmitType:: class, ['label'=>'Save'])
+         /* ->add('submit', SubmitType:: class, ['label'=>'Save']) */
          ->getForm();
 
         $form->handleRequest($request);
@@ -47,6 +47,35 @@ class MicroPostController extends AbstractController
 
             //Add a flash
             $this->addFlash('success', 'Your micro post have been add');
+           
+            return $this->redirectToRoute('app_micro_post');
+            //Redirect
+        }
+        return $this->renderForm(
+            'micro_post/add.html.twig',
+            [
+                'form'=> $form
+            ]
+            );
+    }
+    #[Route('micro-post/{post}/edit', name: 'app_micro_post_edit')]
+    public function edit(MicroPost $post, Request $request, MicroPostRepository $posts): Response
+    {
+      
+        $form = $this->createFormBuilder($post)
+         ->add('title')
+         ->add('text')
+         /* ->add('submit', SubmitType:: class, ['label'=>'Save']) */
+         ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $post = $form->getData();
+            $posts->save($post, true);
+
+            //Add a flash
+            $this->addFlash('success', 'Your micro post have been updated');
            
             return $this->redirectToRoute('app_micro_post');
             //Redirect
