@@ -21,7 +21,7 @@ class UserProfileRepository extends ServiceEntityRepository
         parent::__construct($registry, UserProfile::class);
     }
 
-    public function save(UserProfile $entity, bool $flush = false): void
+    public function add (UserProfile $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 

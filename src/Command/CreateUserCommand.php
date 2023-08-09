@@ -49,7 +49,7 @@ class CreateUserCommand extends Command
                 $password
             )
         );
-        $this->users->save($user, true);
+        $this->users->add($user, true);
 
         $io->success(sprintf('User %s account was created!', $email));
 

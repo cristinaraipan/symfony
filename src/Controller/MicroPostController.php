@@ -43,7 +43,7 @@ class MicroPostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $post = $form->getData();
             $post->setCreated(new DateTime());
-            $posts->save($post, true);
+            $posts->add($post, true);
 
             //Add a flash
             $this->addFlash('success', 'Your micro post have been add');
@@ -66,7 +66,7 @@ class MicroPostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
             $post = $form->getData();
-            $posts->save($post, true);
+            $posts->add($post, true);
 
             //Add a flash
             $this->addFlash('success', 'Your micro post have been updated');
@@ -91,7 +91,7 @@ class MicroPostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $comment = $form->getData();
             $comment ->setPost($post);
-            $comments->save($comment, true);
+            $comments->add($comment, true);
 
             //Add a flash
             $this->addFlash('success', 'Your comment have been updated');
