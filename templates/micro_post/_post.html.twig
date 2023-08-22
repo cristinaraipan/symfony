@@ -5,15 +5,21 @@
         </a>
     </div>
     <div class="text-xl dark:text-gray-400">
-        {{post.text}}
+        {{post.text}}s
     </div>
     <div class="text-gray-500 dark:text-gray-400">
         {{post.created | date("M j, Y")}}
     </div>
     <div class="">
-        <a href="#">
-            Like <span class="px-2 rounded-md bg-gray-200 dark:bg-gray-700">0</span>
-        </a>
+        {% if post.likedBy.contains(app.user) %}
+            <a href="{{path('app_unlike', { id: post.id })}}">
+            Unlike <span class="px-2 rounded-md bg-gray-200 dark:bg-gray-700">{{ post.likedBy.conut }}</span>
+            </a>
+        {% else %}
+            <a href="{{path('app_like', { id: post.id })}}">
+                Like <span class="px-2 rounded-md bg-gray-200 dark:bg-gray-700">{{ post.likedBy.conut }}</span>
+            </a>
+        {% endif %}
     </div>
     <div class="text-sm text-gray-500 dark:text-gray-400">
         <a href="{{ path('app_profile', {id:post.author.id})}}">{{ post.author.email }}</a>
