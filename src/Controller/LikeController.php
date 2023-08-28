@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class LikeController extends AbstractController
 {
     #[Route('/like/{id}', name: 'app_like')]
-    #[IsGranted('IS_AUNTHENTICATED_FULLY')]
+   // #[IsGranted('IS_AUNTHENTICATED_FULLY')]
     public function like(MicroPost $post, MicroPostRepository $posts, Request $request): Response
     {
         $currentUser = $this->getUser();
@@ -23,7 +23,7 @@ class LikeController extends AbstractController
         return $this->redirect($request->headers->get('referer'));
     }
     #[Route('/unlike/{id}', name: 'app_unlike')]
-    #[IsGranted('IS_AUNTHENTICATED_FULLY')]
+   // #[IsGranted('IS_AUNTHENTICATED_FULLY')]
     public function unlike(MicroPost $post, MicroPostRepository $posts, Request $request): Response
     {
         $currentUser = $this->getUser();
