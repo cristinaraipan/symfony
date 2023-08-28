@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="flex">
+    <div class="flex items-center">
         <div>
             <div class="text-2xl">{{ user.userProfile.name ?? user.email }}</div>
             <div class="text-lg text-gray-500 dark:text-gray-400 font-normal">{{ user.email }}</div>
@@ -32,7 +32,7 @@
             {% endif %}
         </div>
         <div class="ml-16 text-2xl">
-        {{ include('follower/_follow_button.html.twig'), {userToFollow: user} }}
+        {{ include('follower/_follow_button.html.twig', {userToFollow: user} )}}
         </div>
     </div>
     <div class="mb-8"></div>
